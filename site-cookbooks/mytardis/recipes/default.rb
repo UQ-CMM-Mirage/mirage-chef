@@ -131,6 +131,7 @@ deploy_revision "mytardis" do
   group "mytardis"
   symlink_before_migrate(app_symlinks.merge({
       "data" => "var",
+      "uqtheme" => "tardis/apps/uqtheme",
       "log" => "log",
       "buildout.cfg" => "buildout-prod.cfg",
       "settings.py" => "tardis/settings.py"
