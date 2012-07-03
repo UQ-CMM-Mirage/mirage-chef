@@ -68,8 +68,8 @@ end
 app_links.each do |k, v|
   link k do
     to v
-    owner "mytardis"
-    group "mytardis"
+    # owner "mytardis"
+    # group "mytardis"
   end
 end
 
