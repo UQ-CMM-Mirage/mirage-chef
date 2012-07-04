@@ -50,6 +50,7 @@ app_dirs = [
   "/opt/mytardis/shared",
   "/opt/mytardis/shared/apps",
   "/var/lib/mytardis",
+  "/var/lib/mytardis/backup",
   "/var/log/mytardis"
 ]
 
@@ -167,5 +168,22 @@ deploy_revision "mytardis" do
       EOH
     end
   end
+end
+
+cookbook_file "/opt/mytardis/shared/backupdb.sh" do
+  action :create
+  source "backupdb.sh"
+  owner "mytardis"
+  group "mytardis"
+  mode "0750"
+end
+
+cron "mytardis_db_backup" do
+  command "/opt/mytardis/shared/backupdb.sh --purgeOld"
+  hour "18"
+  minute "0"
+  user "mytardis"
+  mailto "s.crawley@uq.edu.au"
+  action :create
 end
 
