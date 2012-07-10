@@ -11,7 +11,7 @@ if [ $? != 0 ] ; then
     exit 2
 fi
 
-if [ $# -gt 0 -a "$1" == "--purgeOld" ] ; then
+if [ $# -gt 0 -a "X$1" = "X--purgeOld" ] ; then
     # Delete dumps older than 7 days.
     find . -name mytardis-db-dump\* -ctime 7 -exec rm {} \;
 fi
