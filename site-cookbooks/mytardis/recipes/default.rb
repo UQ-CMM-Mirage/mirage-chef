@@ -187,3 +187,20 @@ cron "mytardis_db_backup" do
   action :create
 end
 
+cookbook_file "/opt/mytardis/shared/logrotate.conf" do
+  action :create
+  source "logrotate.conf"
+  owner "mytardis"
+  group "mytardis"
+  mode "0750"
+end
+
+cron "mytardis_logrotate" do
+  command "/usr/sbin/logrotate /opt/mytardis/shared/logrotate.conf"
+  hour "17"
+  minute "50"
+  user "root"
+  mailto "s.crawley@uq.edu.au"
+  action :create
+end
+
